@@ -1,19 +1,22 @@
 public class Main_Hash {
     public static void main(String[] args) {
-        Tabela_Hash<String, Integer> tabelaHash = new Tabela_Hash<>();
+        Tabela_Hash tabelaHash = new Tabela_Hash();
+        int[] valores = {12, 25, 37, 41, 53, 64, 78, 89};
 
-        // Inserindo elementos
-        tabelaHash.inserir("Cauê", 20);
-        tabelaHash.inserir("Marina", 25);
-        tabelaHash.inserir("Daniel", 19);
+        // Inserir os valores
+        for (int valor : valores) {
+            tabelaHash.inserir(valor);
+        }
 
-        // Buscando valor associado a uma chave
-        System.out.println("Idade de Cauê: " + tabelaHash.buscar("Cauê"));
-
-        // Removendo um elemento
-        tabelaHash.remover("Marina");
-
-        // Exibindo a tabela hash
+        // Exibir tabela após inserções
         tabelaHash.exibir();
-    }
+
+        // Buscar alguns valores
+        System.out.println("Buscar 25: " + tabelaHash.buscar(25)); // true
+        System.out.println("Buscar 100: " + tabelaHash.buscar(100)); // false
+
+        // Remover um valor
+        tabelaHash.remover(25);
+        tabelaHash.exibir();       
+}
 }
