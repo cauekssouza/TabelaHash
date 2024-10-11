@@ -7,7 +7,7 @@ public class Tabela_Hash {
     // Construtor
     @SuppressWarnings("unchecked")
     public Tabela_Hash() {
-        this.tamanhoTabela = 10; // Tamanho da tabela ajustado para 10
+        this.tamanhoTabela = 10; 
         tabela = new LinkedList[tamanhoTabela];
         for (int i = 0; i < tamanhoTabela; i++) {
             tabela[i] = new LinkedList<>();
@@ -16,7 +16,7 @@ public class Tabela_Hash {
 
     // Método para calcular o índice do bucket (Função Hash)
     private int calcularIndice(int chave) {
-        return chave % tamanhoTabela; // Simples hash function para evitar colisões
+        return chave % tamanhoTabela; 
     }
 
     // Método de Inserir
@@ -26,11 +26,11 @@ public class Tabela_Hash {
 
         for (Entry<Integer, Integer> entry : bucket) {
             if (entry.chave.equals(chave)) {
-                entry.valor = chave; // Atualiza o valor se a chave já existir
+                entry.valor = chave; 
                 return;
             }
         }
-        bucket.add(new Entry<>(chave, chave)); // Adiciona novo par chave-valor
+        bucket.add(new Entry<>(chave, chave)); 
     }
 
     // Método de Busca (Ajustado para retornar booleano)
@@ -40,10 +40,10 @@ public class Tabela_Hash {
 
         for (Entry<Integer, Integer> entry : bucket) {
             if (entry.chave.equals(chave)) {
-                return true; // Chave encontrada
+                return true; 
             }
         }
-        return false; // Chave não encontrada
+        return false; 
     }
 
     // Método de Remover (Ajustado para definir valor como 0)
@@ -53,7 +53,7 @@ public class Tabela_Hash {
 
         for (Entry<Integer, Integer> entry : bucket) {
             if (entry.chave.equals(chave)) {
-                entry.valor = 0; // Define valor como 0 ao invés de remover
+                entry.valor = 0; 
                 return;
             }
         }
