@@ -1,70 +1,68 @@
 import java.util.LinkedList;
 
+
 public class Tabela_Hash {
     private final int tamanhoTabela;
     private final LinkedList<Entry<Integer, Integer>>[] tabela;
 
     // Construtor
     @SuppressWarnings("unchecked")
-    public Tabela_Hash() {
-        this.tamanhoTabela = 10; 
-        tabela = new LinkedList[tamanhoTabela];
-        for (int i = 0; i < tamanhoTabela; i++) {
-            tabela[i] = new LinkedList<>();
+    public Tabela_Hash(int tamanhoTabela){
+        this.tamanhoTabela = 10;
+        this.tabela = new LinkedList[tamanhoTabela];
+        for (int i = 0; i < tamanhoTabela; i++){
+            this.tabela[i] = new LinkedList<>();
         }
     }
 
-    // Método para calcular o índice do bucket (Função Hash)
-    private int calcularIndice(int chave) {
-        return chave % tamanhoTabela; 
+    // Método de Calculo
+    private int calculaIndice(int chave){
+        return  chave % tamanhoTabela;
     }
 
     // Método de Inserir
-    public void inserir(int chave) {
-        int indice = calcularIndice(chave);
+    public void inserir(int chave){
+        int indice = calculaIndice(chave);
         LinkedList<Entry<Integer, Integer>> bucket = tabela[indice];
-
-        for (Entry<Integer, Integer> entry : bucket) {
-            if (entry.chave.equals(chave)) {
-                entry.valor = chave; 
+        for (Entry<Integer, Integer> entry : bucket){
+            if(entry.chave.equals(chave)){
+                entry.valor = chave;
                 return;
             }
         }
-        bucket.add(new Entry<>(chave, chave)); 
+        bucket.add(new Entry<>(chave, chave));
     }
 
-    // Método de Busca (Ajustado para retornar booleano)
-    public boolean buscar(int chave) {
-        int indice = calcularIndice(chave);
+    // Método de Busca
+    public boolean buscar(int chave){
+        int indice = calculaIndice(chave);
         LinkedList<Entry<Integer, Integer>> bucket = tabela[indice];
-
-        for (Entry<Integer, Integer> entry : bucket) {
-            if (entry.chave.equals(chave)) {
-                return true; 
+        for (Entry<Integer, Integer> entry : bucket){
+            if(entry.chave.equals(chave)){
+                return true;
             }
         }
-        return false; 
+        return false;
     }
 
-    // Método de Remover (Ajustado para definir valor como 0)
-    public void remover(int chave) {
-        int indice = calcularIndice(chave);
+    // Método de Remover
+    public void remover(int chave){
+        int indice = calculaIndice(chave);
         LinkedList<Entry<Integer, Integer>> bucket = tabela[indice];
-
-        for (Entry<Integer, Integer> entry : bucket) {
-            if (entry.chave.equals(chave)) {
-                entry.valor = 0; 
+        for (Entry<Integer, Integer> entry : bucket){
+            if(entry.chave.equals(chave)){
+                entry.valor = 0;
                 return;
             }
         }
     }
 
     // Exibir Tabela
-    public void exibir() {
-        for (int i = 0; i < tamanhoTabela; i++) {
-            System.out.print("Bucket " + i + ": ");
-            for (Entry<Integer, Integer> entry : tabela[i]) {
-                System.out.print("[" + entry.chave + " = " + entry.valor + "] ");
+    public void exibirTabela(){
+        for (int i = 0; i < tamanhoTabela; i++){
+            System.out.println("Bucket " + i + ": ");
+            for (Entry<Integer, Integer> entry : tabela[i]){
+                System.out.println("[" + entry.chave + "=" + entry.valor + "]");
             }
             System.out.println();
         }
